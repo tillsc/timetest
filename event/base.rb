@@ -6,7 +6,7 @@ module Event
     end  
   
     def timestamp
-      t=Time.now
+      t = Time.now
       t.strftime("%H:%M:%S.#{t.usec}")
     end  
   
