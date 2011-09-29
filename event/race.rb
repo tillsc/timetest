@@ -1,13 +1,13 @@
 module Event
   class Race < Base
     
-    def initialize(data, event_queue)
+    def initialize(data, event_queue, t)
       @@race_number+=1
-      puts "RACE,#{@@race_number},#{timestamp}"
+      puts "RACE,#{@@race_number},#{timestamp(t)}"
       (rand(5) + 2).times do
-        event_queue << TimedEvent.new(Rower.default_time, Event::SplitTime, Rower.new)
+        event_queue << TimedEvent.new(t, Rower.default_time, Event::SplitTime, Rower.new)
       end
-      event_queue << TimedEvent.new(3 * 60, Event::Race)
+      event_queue << TimedEvent.new(t, 3 * 60, Event::Race)
     end
     
     def self.sigma_t
